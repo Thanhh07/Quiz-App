@@ -62,7 +62,6 @@
             padding: 40px;
             text-align: center;
             margin-bottom: 30px;
-            cursor: pointer;
             transition: all 0.3s ease;
         }
 
@@ -740,25 +739,24 @@
             document.querySelector('.' + screenClass).classList.add('active');
         }
 
-        // Copy định dạng JSON
-        function copyJsonFormat() {
+// Copy định dạng JSON
+        function copyJsonFormat(event) {
             const text = document.getElementById('jsonFormat').textContent;
             navigator.clipboard.writeText(text).then(() => {
                 // Hiển thị toast notification
-                showToast('✅ Đã copy định dạng JSON thành công!');
+                showToast('📋 Đã copy định dạng JSON!');
                 
                 // Hiệu ứng nút
                 const btn = event.target;
-                const originalText = btn.textContent;
-                const originalBg = btn.style.background;
-                btn.textContent = '✅ Đã copy!';
+                const originalText = btn.innerHTML;
+                btn.innerHTML = '✅ Đã copy!';
                 btn.style.background = '#059669';
                 setTimeout(() => {
-                    btn.textContent = originalText;
-                    btn.style.background = originalBg;
+                    btn.innerHTML = originalText;
+                    btn.style.background = '';
                 }, 2000);
             }).catch(err => {
-                showToast('❌ Không thể copy: ' + err, 'error');
+                showToast('❌ Không thể copy!', 'error');
             });
         }
 
